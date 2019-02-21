@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    allegro (0.0.1)
+    allegro (0.0.0pre)
       json (~> 0)
 
 GEM
