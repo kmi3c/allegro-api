@@ -9,6 +9,8 @@ module Allegro
 
     def initialize(client_id, secret, _options = {})
       @http_agent = Http::Agent.new({client_id: client_id, secret: secret})
+      @authorized = false
+      authorize
     end
 
     def authorize
@@ -16,7 +18,7 @@ module Allegro
         auth_url('token'),
         { grant_type: 'client_credentials', method: :post }
       )
-      @access_token = response[:access_token]
+      @access_token = response['access_token']
       @authorized = true if response && @access_token
     end
 

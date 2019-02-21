@@ -1,8 +1,8 @@
+require 'net/http'
+require 'json'
 require 'allegro/version'
 require 'allegro/client'
 require 'allegro/http'
-require 'net/http'
-require 'json'
 
 module Allegro
 

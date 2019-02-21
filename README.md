@@ -1,4 +1,4 @@
-# Allegro
+# Allegro API
 
 Simple Ruby REST API client for Allegro API.
 
@@ -9,7 +9,7 @@ https://developer.allegro.pl/about/#rest-api
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'allegro'
+gem 'allegro-api'
 ```
 
 And then execute:
@@ -18,11 +18,28 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install allegro
+    $ gem install allegro-api
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+# Create client instance and authorize
+a = Allegro::Client.new('client','secret')
+
+# Does client authorized sucessfully?
+a.authorized? # => false
+```
+
+## TODO
+
+  * [ ] Write specs!
+  * [ ] Enable specs on travis!
+  * [ ] Add possibilty to setup/change api version
+  * [ ] Handle more `Http::Agent` methods and/or move agent to sepearate `gem`
+  * [ ] Prepare some method for searching offers
+  * [ ] Prepare some methods for other API methods
+  * [ ] Add more TODO-s
+
 
 ## Development
 
@@ -32,4 +49,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/allegro.
+Bug reports and pull requests are welcome on GitHub at https://github.com/kmi3c/allegro-api.
