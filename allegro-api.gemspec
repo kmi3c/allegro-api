@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'allegro/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'allegro'
+  spec.name          = 'allegro-api'
   spec.version       = Allegro::VERSION
   spec.licenses      = ['LGPL-3.0']
   spec.authors       = ['Paweł Adamski']

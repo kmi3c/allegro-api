@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    allegro (0.0.0pre)
+    allegro-api (0.0.0pre)
       json (~> 0)
 
 GEM
@@ -33,7 +33,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  allegro!
+  allegro-api!
   bundler (~> 1.16)
   pry (~> 0)
   rake (~> 10.0)
