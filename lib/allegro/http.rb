@@ -5,16 +5,14 @@ module Http
     attr_accessor :options, :logger
     attr_reader :authorized
 
-    def initialize(params = {})
+    def initialize(_options = {})
       @logger = Logger.new(STDOUT)
-      @options = params
-      @authorized = false
+      @options = _options
     end
 
     # TODO: split to more atomic methods fe: handle_error, prepare request, etc.
     def fetch(uri, params = {})
       uri = URI(uri)
-      params.merge!(default_params)
       body = []
       begin
         session = Net::HTTP.new(uri.host, uri.port)
@@ -39,12 +37,14 @@ module Http
         when Net::HTTPRedirection
           raise StandardError, response.message
         else
+          body = parse_body(body, response.content_type)
+          return body if body.is_a?(Hash)
           raise StandardError, response.message
         end
       rescue StandardError => e
         logger.error e.message
         body = []
-         raise e
+        raise e
       end
       body
     end
@@ -64,22 +64,15 @@ module Http
         request
       end
       headers.each{|k,v| request[k.to_s] = v }
-      request.basic_auth(options[:client_id], options[:secret])
       request
     end
 
     def parse_body(body, content_type)
-      case content_type
-      when /application\/(vnd\.allegro\.public\.v\d+\+json|json)/
-        JSON.parse(body)
-      else
-        body
-      end
+      json?(content_type) ? JSON.parse(body) : body
     end
 
-
-    def default_params
-      { method: :get, headers: { accept: 'application/vnd.allegro.public.v1+json'}}
+    def json?(content_type)
+      !!content_type.match(/application\/(vnd\.allegro\.public\.v\d+\+json|json)/)
     end
   end
 end

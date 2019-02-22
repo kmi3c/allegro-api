@@ -1,9 +1,10 @@
-##[![Gem Version](https://badge.fury.io/rb/allegro-api.svg)](https://badge.fury.io/rb/allegro-api) [![Build Status](https://travis-ci.org/kmi3c/allegro-api.svg?branch=master)](https://travis-ci.org/kmi3c/allegro-api)
+#[![Gem Version](https://badge.fury.io/rb/allegro-api.svg)](https://badge.fury.io/rb/allegro-api) [![Build Status](https://travis-ci.org/kmi3c/allegro-api.svg?branch=master)](https://travis-ci.org/kmi3c/allegro-api)
 # Allegro API
 
-Simple Ruby REST API client for Allegro API.
+Simple Ruby REST API client for Allegro API for device flow.
 
 https://developer.allegro.pl/about/#rest-api
+https://developer.allegro.pl/swagger.yaml
 
 ## Installation
 

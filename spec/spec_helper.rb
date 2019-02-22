@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "allegro"
+require "allegro-api"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
