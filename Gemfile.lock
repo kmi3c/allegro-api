@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    allegro-api (0.0.0pre)
+    allegro-api (0.0.1pre)
       json (~> 1.8.3)
 
 GEM
