@@ -26,10 +26,13 @@ Or install it yourself as:
 
 ```ruby
 # Create client instance and authorize
-a = Allegro::Client.new('client','secret')
+api = Allegro::Client.new('client','secret')
 
 # Does client authorized sucessfully?
-a.authorized? # => false
+api.authorized? # => false
+
+# Search for some offers with some parameters
+api.search({ 'seller.id' => '1'}) # { 'items' => [ ... ] } JSON response dumped to Hash
 ```
 
 ## TODO
