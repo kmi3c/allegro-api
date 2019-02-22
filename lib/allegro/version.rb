@@ -1,3 +1,3 @@
 module Allegro
-  VERSION = "0.0.1pre"
+  VERSION = "0.0.2pre"
 end
