@@ -1,10 +1,8 @@
 module Allegro
-
-  AUTH_URI = 'https://allegro.pl/auth/oauth'
-  API_URI = 'https://api.allegro.pl'
+  AUTH_URI = 'https://allegro.pl/auth/oauth'.freeze
+  API_URI = 'https://api.allegro.pl'.freeze
 
   class Client
-
     attr_reader :http_agent
 
     def initialize(client_id, secret, _options = {})
@@ -21,13 +19,11 @@ module Allegro
       auth_token = Base64.strict_encode64("#{client_id}:#{secret}")
       response = @http_agent.fetch(
         auth_url('token'),
-        {
-          method: :post,
-          grant_type: 'client_credentials',
-          headers: default_headers.merge({
-            authorization: "Basic #{auth_token}"
-          })
-        }
+        method: :post,
+        grant_type: 'client_credentials',
+        headers: default_headers.merge(
+          authorization: "Basic #{auth_token}"
+        )
       )
       @access_token = response['access_token']
       @token_type = response['token_type']
@@ -66,6 +62,5 @@ module Allegro
         authorization: "#{@token_type} #{@access_token}"
       }
     end
-
   end
 end

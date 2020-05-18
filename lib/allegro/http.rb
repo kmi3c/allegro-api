@@ -39,6 +39,7 @@ module Http
         else
           body = parse_body(body, response.content_type)
           return body if body.is_a?(Hash)
+
           raise StandardError, response.message
         end
       rescue StandardError => e
@@ -53,17 +54,17 @@ module Http
 
     def build_request(uri, params)
       method = params[:method]
-      request_params = params.select{|k,v| ![:method, :headers].include?(k)}
+      request_params = params.reject { |k, _v| %i[method headers].include?(k) }
       headers = params[:headers]
       request = if method == :get
-        uri.query = URI.encode_www_form(params)
-        Net::HTTP::Get.new(uri.request_uri)
-      elsif method == :post
-        request = Net::HTTP::Post.new(uri.path)
-        request.set_form_data(request_params)
-        request
+                  uri.query = URI.encode_www_form(params)
+                  Net::HTTP::Get.new(uri.request_uri)
+                elsif method == :post
+                  request = Net::HTTP::Post.new(uri.path)
+                  request.set_form_data(request_params)
+                  request
       end
-      headers.each{|k,v| request[k.to_s] = v }
+      headers.each { |k, v| request[k.to_s] = v }
       request
     end
 
@@ -72,8 +73,7 @@ module Http
     end
 
     def json?(content_type)
-      !!content_type.match(/application\/(vnd\.allegro\.public\.v\d+\+json|json)/)
+      !!content_type.match(%r{application/(vnd\.allegro\.public\.v\d+\+json|json)})
     end
   end
 end
-

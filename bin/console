@@ -5,6 +5,6 @@ require 'pry'
 require 'pry-stack_explorer'
 require 'allegro-api'
 
-# TODO add ENV support and auto init of a client?
+# TODO: add ENV support and auto init of a client?
 require 'irb'
 IRB.start(__FILE__)
